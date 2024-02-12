@@ -57,14 +57,3 @@ class arbol:
             orden.extend(self.der.postorden())
         orden.append(self.valor)
         return orden
-
-a = arbol(10)
-a.agregar(5)
-a.agregar(15)
-a.agregar(3)
-a.agregar(7)
-a.agregar(13)
-
-print(a.preorden())
-print(a.inorden())
-print(a.postorden())
