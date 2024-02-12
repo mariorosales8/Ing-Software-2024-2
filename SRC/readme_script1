@@ -1,0 +1,8 @@
+Primero se le pedirá que escriba el nombre de los jugadores.
+
+Para anotar los puntos, escriba 1 ó 2 según el jugador que haya ganado el punto.
+
+Tras cada punto se mostrará el marcador de sets, juegos y puntos.
+El valor de la izquierda corresponde al jugador 1 y el de la derecha al jugador 2.
+
+Escriba 's' al anotar un punto para salir del programa.
