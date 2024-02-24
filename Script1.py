@@ -77,4 +77,24 @@ def filtra_por_apellido(cadena_final):
         conn.close()
         return cursor.fetchall()
 
-    
+# Ejercicio 2.1.3
+def cambia_genero(nombre, genero):
+    try:
+        conn = pymysql.connect(**config)
+        cursor = conn.cursor()
+
+        query = "SELECT idPelicula FROM peliculas WHERE nombre = %s"
+        cursor.execute(query, (nombre))
+        pelicula = cursor.fetchone()
+
+        if pelicula:
+            sql_actualiza = "UPDATE peliculas SET genero = %s WHERE nombre = %s"
+            cursor.execute(sql_actualiza, (genero, nombre))
+
+        conn.commit()
+    except Exception as e:
+        print("Error: ", e)
+    finally:
+        cursor.close()
+        conn.close()
+
