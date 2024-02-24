@@ -56,4 +56,25 @@ def insertar_registros():
         conn.close()
 
 
-insertar_registros()
+# Ejercicio 2.1.2
+def filtra_por_apellido(cadena_final):
+    try:
+        conn = pymysql.connect(**config)
+        cursor = conn.cursor()
+
+        query = """
+                    SELECT *
+                    FROM usuarios
+                    WHERE apPat LIKE %s OR apMat LIKE %s
+                """
+        filtro = '%' + cadena_final
+        cursor.execute(query, (filtro, filtro))
+        conn.commit()
+    except Exception as e:
+        print("Error: ", e)
+    finally:
+        cursor.close()
+        conn.close()
+        return cursor.fetchall()
+
+    
