@@ -1,3 +1,5 @@
+import datetime
+
 import pymysql
 
 num_usuario = 0
@@ -14,21 +16,41 @@ def insertar_registros():
     try:
         conn = pymysql.connect(**config)
         cursor = conn.cursor()
-        5
-        cursor.execute("INSERT INTO usuarios (nombre, password, email, superUser) VALUES ('Usuario'+str(num_usuario), 'password'+str(num_usuario)+str(num_usuario+1)+str(num_usuario+2), 'usuario'+str(num_usuario)+'@gmail.com', 0)")
-        cursor.execute("INSERT INTO peliculas (nombre, genero, duracion, inventario) VALUES ('Pelicula'+str(num_usuario), 'Acción', 120, 10)")
+        # Inserta usuario
+        sql_usuarios = """
+                    INSERT INTO usuarios (nombre, apPat, apMat, password, email, superUser)
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                    """
+        cursor.execute(sql_usuarios, ('Juan',
+                                      'Pérez',
+                                      'Gonzáles',
+                                      'Developer123!',
+                                      'juanpgonz@gmail.com',
+                                      False))
+        id_usuario = cursor.lastrowid
 
-        cursor.execute("SELECT * FROM usuarios")
-        usuario = cursor.fetchone()
-        cursor.execute("SELECT * FROM peliculas")
-        pelicula = cursor.fetchone()
-        if usuario and pelicula:
-            cursor.execute("INSERT INTO rentar (idUsuario, idPelicula, fecha_renta, dias_de_renta, estatus) VALUES (str(usuario), str(pelicula), '2023-18-02', 5, 0)")
-        else:
-            print("No se pudo insertar el registro en la tabla rentar porque no existen más registros en las tablas usuarios y peliculas")
+        # Inserta película
+        sql_peliculas = """
+                    INSERT INTO peliculas (nombre, genero, duracion, inventario)
+                    VALUES (%s, %s, %s, %s)
+                    """
+        cursor.execute(sql_peliculas, ('Terminator',
+                                           'Ciencia ficción',
+                                           '110',
+                                           1))
+        id_pelicula = cursor.lastrowid
+
+        # Ingresa rente
+        sql_rentar = """
+                    INSERT INTO rentar (idUsuario, idPelicula, fecha_renta, dias_de_renta, estatus)
+                    VALUES (%s, %s, %s, %s, %s)
+                    """
+        cursor.execute(sql_rentar, (id_usuario, id_pelicula,
+                                    datetime.datetime.now(), 5, 0))
+
         conn.commit()
     except Exception as e:
-        print("No se pudo insertar el registro.", e)
+        print("No se pudo insertar el registro. Error: ", e)
     finally:
         cursor.close()
         conn.close()
