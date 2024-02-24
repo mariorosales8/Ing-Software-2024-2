@@ -84,7 +84,7 @@ def cambia_genero(nombre, genero):
         cursor = conn.cursor()
 
         query = "SELECT idPelicula FROM peliculas WHERE nombre = %s"
-        cursor.execute(query, (nombre))
+        cursor.execute(query, nombre)
         pelicula = cursor.fetchone()
 
         if pelicula:
@@ -98,3 +98,21 @@ def cambia_genero(nombre, genero):
         cursor.close()
         conn.close()
 
+# Ejercicio 2.1.4
+def elimina_rentas():
+    try:
+        conn = pymysql.connect(**config)
+        cursor = conn.cursor()
+
+        fecha_limite = datetime.datetime.now() - datetime.timedelta(days=3)
+        fecha_limite_str = fecha_limite.strftime('%Y-%m-%d %H:%M:%S')
+
+        sql_elimina = "DELETE FROM rentar WHERE fecha_renta < %s"
+        cursor.execute(sql_elimina, fecha_limite_str)
+
+        conn.commit()
+    except Exception as e:
+        print("Error: ", e)
+    finally:
+        cursor.close()
+        conn.close()
