@@ -122,37 +122,50 @@ def eliminar_registro():
             usuarios = Usuario.query.all()
         else:
             usuarios = Usuario.query.filter_by(idUsuario=id).all()
+
         for usuario in usuarios:
+            rentas = Rentar.query.filter_by(idUsuario=usuario.idUsuario).all()
+            for renta in rentas:
+                db.session.delete(renta)
+            db.session.commit()
             db.session.delete(usuario)
             try:
                 db.session.commit()
             except Exception as e:
                 db.session.rollback()
-                print("Error al eliminar los registros")
+                print("Error al eliminar los registros. Error:\n" + str(e))
+
     if opcion == '2':
         if id == '-1':
             peliculas = Pelicula.query.all()
         else:
             peliculas = Pelicula.query.filter_by(idPelicula=id).all()
+
         for pelicula in peliculas:
+            rentas = Rentar.query.filter_by(idPelicula=pelicula.idPelicula).all()
+            for renta in rentas:
+                db.session.delete(renta)
+            db.session.commit()
             db.session.delete(pelicula)
             try:
                 db.session.commit()
             except Exception as e:
                 db.session.rollback()
-                print("Error al eliminar los registros")
+                print("Error al eliminar los registros. Error: " + str(e))
+
     if opcion == '3':
         if id == '-1':
             rentas = Rentar.query.all()
         else:
             rentas = Rentar.query.filter_by(idRentar=id).all()
+
         for renta in rentas:
             db.session.delete(renta)
             try:
                 db.session.commit()
             except Exception as e:
                 db.session.rollback()
-                print("Error al eliminar los registros")
+                print("Error al eliminar los registros. Error: " + str(e))
 
 
 
