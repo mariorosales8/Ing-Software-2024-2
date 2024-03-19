@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizando renta</title>
+</head>
+<body>
+    <h1>Actualizando renta {{renta.idRenta}}</h1>
+    <form method="post">
+    <label for="estatus">Estatus</label>
+    <input type="checkbox" name="estatus" id="estatus" {% if renta.estatus %} checked {% endif %}/>
+    <br>
+    <button>Actualizar</button>
+    </form>
+    <a href="/renta/actualizar">Regresar</a>
+
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <h3>{{ message }}</h3>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

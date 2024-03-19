@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizar película</title>
+</head>
+<body>
+    <h1>Actualizar una película</h1>
+    <form method="post">
+    <label for="id">Ingrese el ID de la película a actualizar:</label>
+    <input type="number" name="id" id="id"/>
+    <br>
+    <button>Buscar película</button>
+    </form>
+    <a href="/pelicula/">Regresar</a>
+
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <h3>{{ message }}</h3>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

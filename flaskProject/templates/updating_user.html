@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizando usuario</title>
+</head>
+<body>
+    <h1>Actualizando usuario {{usuario.idUsuario}}</h1>
+    <form method="post">
+    <label for="name">Ingrese el nombre:</label>
+    <input type="text" name="name" id="name" value="{{usuario.nombre}}"/>
+    <br>
+    <label for="ap_pat">Ingrese el apellido paterno:</label>
+    <input type="text" name="ap_pat" id="ap_pat" value="{{usuario.apPat}}"/>
+    <br>
+    <label for="ap_mat">Ingrese el apellido materno:</label>
+    <input type="text" name="ap_mat" id="ap_mat" value="{{usuario.apMat}}"/>
+    <br>
+    <label for="passwd">Ingrese el password:</label>
+    <input type="password" name="passwd" id="passwd" value="{{usuario.password}}"/>
+    <br>
+    <label for="email">Ingrese el email:</label>
+    <input type="email" name="email" id="email" value="{{usuario.email}}"/>
+    <br>
+    <label for="superUser">Superusuario</label>
+    <input type="checkbox" name="superUser" id="superUser" {% if usuario.superUser %} checked {% endif %}/>
+    <br>
+    <button>Actualizar</button>
+    </form>
+    <a href="/usuario/actualizar">Regresar</a>
+
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <h3>{{ message }}</h3>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

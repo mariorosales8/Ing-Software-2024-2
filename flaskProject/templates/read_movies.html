@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Películas</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Películas</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Inventario</th>
+        </tr>
+        {% for pelicula in peliculas %}
+        <tr>
+            <th>{{ pelicula.idPelicula }}</th>
+            <th>{{ pelicula.nombre }}</th>
+            <th>{{ pelicula.inventario }}</th>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/pelicula/">Regresar</a>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Actualizando película</title>
+</head>
+<body>
+    <h1>Actualizando película {{pelicula.idPelícula}}</h1>
+    <form method="post">
+    <label for="name">Ingrese el nombre:</label>
+    <input type="text" name="name" id="name" value="{{pelicula.nombre}}"/>
+    <br>
+    <label for="genero">Ingrese el género:</label>
+    <input type="text" name="genero" id="genero" value="{{pelicula.genero}}"/>
+    <br>
+    <label for="duracion"> Ingrese la duración:</label>
+    <input type="number" name="duracion" id="duracion" value="{{pelicula.duracion}}"/>
+    <br>
+    <label for="inventario"> Ingrese el inventario:</label>
+    <input type="number" name="inventario" id="inventario" value="{{pelicula.inventario}}"/>
+    <br>
+    <button>Actualizar</button>
+    </form>
+    <a href="/pelicula/actualizar">Regresar</a>
+
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <h3>{{ message }}</h3>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

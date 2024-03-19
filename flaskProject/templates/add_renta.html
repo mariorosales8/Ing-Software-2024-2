@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar renta</title>
+</head>
+<body>
+    <h1>Crear un renta</h1>
+    <form method="post">
+    <label for="idUsuario">ID del usuario:</label>
+    <input type="number" name="idUsuario" id="idUsuario"/>
+    <br>
+    <label for="idPelicula">ID de la película:</label>
+    <input type="number" name="idPelicula" id="idPelicula"/>
+    <br>
+    <label for="fecha_renta">Fecha de renta:</label>
+    <input type="date" name="fecha_renta" id="fecha_renta"/>
+    <br>
+    <label for="dias">Días de renta:</label>
+    <input type="number" name="dias" id="dias"/>
+    <br>
+
+    <button>Crear renta</button>
+    </form>
+    <a href="/renta/">Regresar</a>
+
+    {% if get_flashed_messages() %}
+        {% for message in get_flashed_messages() %}
+            <h3>{{ message }}</h3>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

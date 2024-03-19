@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rentas</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .vencido {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rentas</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Límite de entrega</th>
+            <th>Estatus</th>
+        </tr>
+        {% for renta in rentas %}
+        <tr>
+            {% if renta[2] %}
+                <th class="vencido">{{ renta[0].idRentar }}</th>
+                <th class="vencido">{{ renta[1] }}</th>
+                <th class="vencido">{{ renta[0].estatus }}</th>
+            {% else %}
+                <th>{{ renta[0].idRentar }}</th>
+                <th>{{ renta[1] }}</th>
+                <th>{{ renta[0].estatus }}</th>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/renta/">Regresar</a>
+</body>
+</html>
