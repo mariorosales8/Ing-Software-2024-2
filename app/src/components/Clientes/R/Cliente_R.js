@@ -11,8 +11,8 @@ const Cliente_R = ({ usuarios, borraUsuario, setUpdate }) => {
 
 
     return (
-        <div>
-            <h1>Lista de Usuarios</h1>
+        <div className='tabla-usuarios'>
+            <h3>Lista de Usuarios</h3>
             <table>
                 <thead>
                     <tr>

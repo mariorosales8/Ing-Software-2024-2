@@ -72,35 +72,35 @@ const Cliente_C = ({ agregaUsuario, update, setUpdate, actualizaUsuario }) => {
 
     return (
         <div>
-            <h1>Agregar Usuario</h1>
+            <h3>Agregar Usuario</h3>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="agregar-usuario-form">
                     <label htmlFor="name">Nombre:</label>
                     <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
                 </div>
-                <div>
+                <div className="agregar-usuario-form">
                     <label htmlFor="ap_pat">Apellido Paterno:</label>
                     <input type="text" id="ap_pat" name="ap_pat" value={formData.ap_pat} onChange={handleChange} required />
                 </div>
-                <div>
+                <div className="agregar-usuario-form">
                     <label htmlFor="ap_mat">Apellido Materno:</label>
                     <input type="text" id="ap_mat" name="ap_mat" value={formData.ap_mat} onChange={handleChange} required />
                 </div>
-                <div>
+                <div className="agregar-usuario-form">
                     <label htmlFor="passwd">Contraseña:</label>
                     <input type="password" id="passwd" name="passwd" value={formData.passwd} onChange={handleChange} required />
                 </div>
-                <div>
+                <div className="agregar-usuario-form">
                     <label htmlFor="email">Correo electrónico:</label>
                     <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
                 </div>
-                <div>
-                    <input type="checkbox" id="superUser" name="superUser" checked={formData.superUser} onChange={handleChange} />
+                <div className="agregar-usuario-form">
+                    <input className="superUser-checkbox" type="checkbox" id="superUser" name="superUser" checked={formData.superUser} onChange={handleChange} />
                     <label htmlFor="superUser">Super Usuario</label>
                 </div>
-                <button type="submit">Agregar Usuario</button>
+                <button className='agregar-usuario-btn' type="submit">Agregar Usuario</button>
 
-                {update !== null && <button type="button" onClick={actualiza}>Actualizar</button>}
+                {update !== null && <button className='agregar-usuario-btn' type="button" onClick={actualiza}>Actualizar</button>}
             </form>
         </div>
     );

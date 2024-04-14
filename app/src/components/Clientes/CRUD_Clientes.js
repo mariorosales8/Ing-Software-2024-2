@@ -53,11 +53,18 @@ const Clientes = () => {
     const [update, setUpdate] = React.useState(null);
 
     return (
-        <div className="Clientes">
-          <h1>Clonbuster</h1>
-            <h2>Clientes</h2>
-            <Cliente_C agregaUsuario={agregaUsuario} update={update} setUpdate={setUpdate} actualizaUsuario={actualizaUsuario} />
-            <Cliente_R usuarios={lista_usuarios} borraUsuario={borraUsuario} setUpdate={setUpdate} />
+        <div>
+            <div>
+                <a href="/">
+                  <button className="agregar-usuario-btn">Volver al Inicio</button>
+                </a>
+            </div>
+            <div className="Clientes">
+              <h1>Clonbuster</h1>
+                <h2>Clientes</h2>
+                <Cliente_C agregaUsuario={agregaUsuario} update={update} setUpdate={setUpdate} actualizaUsuario={actualizaUsuario} />
+                <Cliente_R usuarios={lista_usuarios} borraUsuario={borraUsuario} setUpdate={setUpdate} />
+            </div>
         </div>
     );
 }
