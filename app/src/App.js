@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Inicio from "./inicio";
 import Clientes from "./components/Clientes/CRUD_Clientes";
 import Cliente_C from "./components/Clientes/C/Cliente_C";
-import crea_cliente from "./components/Clientes/C/crea_cliente";
+// import crea_cliente from "./components/Clientes/C/crea_cliente";
 import Cliente_R from "./components/Clientes/R/Cliente_R";
-import lee_cliente from "./components/Clientes/R/lee_cliente";
+// import lee_cliente from "./components/Clientes/R/lee_cliente";
 // import Cliente_U from "./components/Clientes/Cliente_U";
 // import Cliente_D from "./components/Clientes/Cliente_D";
 // import Peliculas from "./components/Peliculas/CRUD_Peliculas";
@@ -30,6 +30,7 @@ function App() {
           <Route path="/clientes" element={<Clientes/>} />
           <Route path="/cliente/create" element={<crea_cliente/>} />
           <Route path="/cliente/read" element={<lee_cliente/>} />
+          
           {/* <Route path="/cliente/update" element={<Cliente_U/>} /> */}
           {/* <Route path="/cliente/delete" element={<Cliente_D/>} /> */}
 

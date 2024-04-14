@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Cliente_C = () => {
+const Cliente_C = ({ agregaUsuario, update, setUpdate, actualizaUsuario }) => {
     const [formData, setFormData] = useState({
         name: '',
         ap_pat: '',
@@ -9,6 +9,19 @@ const Cliente_C = () => {
         email: '',
         superUser: false
     });
+
+    useEffect(() => {
+        if (update !== null) {
+            setFormData({
+                name: update.name,
+                ap_pat: update.ap_pat,
+                ap_mat: update.ap_mat,
+                passwd: update.passwd,
+                email: update.email,
+                superUser: update.superUser
+            });
+        }
+    }, [update]);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -22,24 +35,40 @@ const Cliente_C = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('/api/agregar_usuario', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
+            agregaUsuario(formData);
+            setFormData({
+                name: '',
+                ap_pat: '',
+                ap_mat: '',
+                passwd: '',
+                email: '',
+                superUser: false
             });
-            if (response.ok) {
-                // Redirigir a la vista anterior
-                window.location.href = '/clientes';
-            } else {
-                throw new Error('Error al agregar usuario');
-            }
+            setUpdate(null);
         } catch (error) {
             console.error(error);            
             alert('Error al agregar usuario');
         }
     };
+
+    const actualiza = () => {
+        try {
+            actualizaUsuario(formData, update.name, update.ap_pat, update.ap_mat, update.email);
+            setFormData({
+                name: '',
+                ap_pat: '',
+                ap_mat: '',
+                passwd: '',
+                email: '',
+                superUser: false
+            });
+            setUpdate(null);
+        }
+        catch (error) {
+            console.error(error);
+            alert('Error al actualizar usuario');
+        }
+    }
 
     return (
         <div>
@@ -70,6 +99,8 @@ const Cliente_C = () => {
                     <label htmlFor="superUser">Super Usuario</label>
                 </div>
                 <button type="submit">Agregar Usuario</button>
+
+                {update !== null && <button type="button" onClick={actualiza}>Actualizar</button>}
             </form>
         </div>
     );
